@@ -34,18 +34,19 @@ h1 {
 
 }
 #questions-container {
-    visibility: hidden;
+    /* visibility: hidden; */
     width:900px;
     height: 450px;
     display: flex;
-    margin-left: 350px;
-    margin-top: 100px;
+    /* margin-left: 350px;
+    margin-top: 100px; */
     justify-content: center;
     max-width: 80%;
     /* doesnt overflow our page */
     background-color: purple;
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px; 
+    align-items: center;
     
 }
 
@@ -71,15 +72,16 @@ h1 {
     display: inline;
     color: white;
 }
-.timer {
+#timer {
+    /* visibility: 'hidden'; */
     text-align: center;
-    width: 155px;
-    height: 30px;
+    width: 100px;
+    height: 20px;
     background-color: purple;
     color: white;
-    margin-top: -100px;
-
+   
 }
+
 
 .quiz-score {
     text-align: center;
@@ -101,18 +103,22 @@ h1 {
 }
 
 .highscores-container {
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 #initials-label {
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 .scores {
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 #score-container {
+    /* visibility: hidden; */
+}
+
+.hidden {
     visibility: hidden;
 }
 
