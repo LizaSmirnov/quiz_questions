@@ -6,17 +6,19 @@ var timeEl = document.querySelector("#timer");
 var highScoreEl = document.querySelector(".centered");
 var highsScoreContainer = document.querySelector('#hidescores')
 var questionsEl = document.querySelector("#questions");
-
+var highScoreBtn = document.querySelector('#highscores-link');
 // Listen for a click event on toggle switch
 startButton.addEventListener("click", startGame)
  
 function startGame(){
     startButton.style.display = "none";
-
-
+    highScoreBtn.style.display = "none";
+    questionContainer.style.visibility='visible';
+    timeEl.style.visibility = "visible"
+dnsjandjsandskaldnksmal
     //highScoreEl.textContent= '';
     setTime();
-    getQuestion();
+    // getQuestion();
     //document.getElementById('#question-container').classList.remove='hidden';
 }
 
@@ -24,7 +26,7 @@ var secondsStart = 10;
 
 function setTime() {
    
-    questionContainer.style.visibility='visible';
+   
   var timerInterval = setInterval(function() {
     secondsStart--;
     timeEl.textContent = secondsStart + ' sec left';

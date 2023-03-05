@@ -15,10 +15,8 @@
     <h1>Quiz Time!</h1>
     <button id="startButton">Start</button>
     <div class="scores">
-      <a id="highscores-link" class="hidden">View high scores</a>
+      <button id="highscores-link">View high scores</button>
     </div>
-    <div id="timer" class="hidden">
-
       <div id="questions-container" class="hidden">
         <h1 id="questions">"Question"</h1>
           <div id="answer-buttons" class="hidden">
@@ -27,11 +25,8 @@
             <button class="btn">Answer 3</button>
             <button class="btn">Answer 4</button>
           </div>
-      <div class="controls">
-        <button id="next-btn" class="next-btn hidden">Next</button>
-      </div>
     </div>
-    <div id="timer" class="hide">
+    <div id="timer" class="hidden">
   </div>
       </section>
 <!-- High Score -->
@@ -46,11 +41,11 @@
 
       <section id="highscores" class="highscores-container hide">
         <div id="high-scores">
-          <h1 class="centered">High Scores</h1>
+          <h1 id="centered" class="hidden">High Scores</h1>
           <div id="highscore" class="highscore highscore-list">
           </div>
           <div class="controls">
-            <button id="restart-btn">Restart</button>
+            <button id="restart-btn" class="hidden">Restart</button>
           </div>
         </div>
 
