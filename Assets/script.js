@@ -1,28 +1,35 @@
 
-var startButton = document.querySelector("#startButton");
-var scoreIncrease = document.querySelector(".score");
+var startButton = document.querySelector('#startButton');
+var scoreNumber = document.querySelector('#score');
 var questionContainer = document.querySelector('#questions-container');
-var timeEl = document.querySelector("#timer");
-var highScoreEl = document.querySelector(".centered");
+var timeEl = document.querySelector('#timer');
 var highsScoreContainer = document.querySelector('#hidescores')
-var questionsEl = document.querySelector("#questions");
+var questionsEl = document.querySelector('#questions');
 var highScoreBtn = document.querySelector('#highscores-link');
+var answerBtn = document.querySelector('#answer-buttons');
+var restartBtn = document.querySelector('#restart-btn');
+var answers = Array.from(document.querySelector('.btn'));
+let currentQuestions = {};
+let acceptingAnswers = true;
+let score = 0;
+let secondsStart = 10;
+
 // Listen for a click event on toggle switch
-startButton.addEventListener("click", startGame)
+startButton.addEventListener('click', startGame)
  
 function startGame(){
-    startButton.style.display = "none";
-    highScoreBtn.style.display = "none";
+    startButton.style.visibility = 'hidden';
+    highScoreBtn.style.visibility = 'hidden';
     questionContainer.style.visibility='visible';
-    timeEl.style.visibility = "visible"
-dnsjandjsandskaldnksmal
-    //highScoreEl.textContent= '';
+    timeEl.style.visibility = 'visible';
+    answerBtn.style.visibility = 'visible';
+    scoreNumber.style.visibility='visible';
+    
     setTime();
-    // getQuestion();
-    //document.getElementById('#question-container').classList.remove='hidden';
+    scoreTally();
 }
 
-var secondsStart = 10;
+
 
 function setTime() {
    
@@ -38,18 +45,62 @@ function setTime() {
   }, 1000);
 //second one
 }
+// var score = 0
+// function scoreTally {
+//     if (console.log(questions[1].answers[0].correct) === true){
+//         score++
+//         scoreNumber.textContent = score;
+//     }
+//         else {
+//             score--
+//             scoreNumber.textContent = score;
+//         }
+//     }
 function sendMessage() {
-    //questionContainer.classList.remove('hide');
-    window.alert("You are done.");
+    timeEl.style.visibility='hidden';
     questionContainer.style.visibility='hidden';
-    highsScoreContainer.style.visibility='visible';
+    answerBtn.style.visibility = 'hidden';
+    highsScoreContainer.style.visibility = 'visible';
+   
+
+    
+    window.alert('You are done.');
+
 
 
     //go to high score page where they can add input
 }
+function highscore(){
+var score = 0;
+var highscore = localStorage.getItem('#highscore');
+
+if(highscore !== null){
+    if (score > highscore) {
+        localStorage.setItem('#highscore', score);      
+    }
+}
+else{
+    localStorage.setItem('#highscore', score);
+}
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Question const
 const questions = [
     {
-        question: "What is 12*12?",
+        question: 'What is 12*12?',
         answers: [
             {text: 144, correct:true},
             {text: 244, correct:false},
@@ -58,7 +109,7 @@ const questions = [
         ]
     },
     {
-        question: "What is 6*8?",
+        question: 'What is 6*8?',
         answers: [
             {text: 48, correct:true},
             {text: 44, correct:false},
@@ -67,7 +118,7 @@ const questions = [
         ]
     },
     {
-        question: "What is 1*1?",
+        question: 'What is 1*1?',
         answers: [
             {text: 1, correct:true},
             {text: 10, correct:false},
@@ -76,7 +127,7 @@ const questions = [
         ]
     },
     {
-        question: "What is 1*12?",
+        question: 'What is 1*12?',
         answers: [
             {text: 12, correct:true},
             {text: 24, correct:false},

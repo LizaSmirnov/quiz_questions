@@ -1,4 +1,4 @@
-*,
+ *,
 *::before,
 *::after {
   box-sizing: border-box; 
@@ -7,37 +7,35 @@
   font-size:62.5%;
   font-family: Arial, Helvetica, sans-serif;
   background: white;
-  /* makes it so widths and heights are easier to style
-  font-family: Arial, Helvetica, sans-serif; */
-}
+   /* makes it so widths and heights are easier to style */
+  font-family: Arial, Helvetica, sans-serif; 
 
+
+}
 
 h1 {
   font-size: 8em;
   color: purple;
-  margin-bottom: 4rem;
+  display: flex;
+  justify-content: center;
 
 }
-
 #questions-container {
-    /* visibility: hidden; */
-    width:100px;
-    height: 50px;
-    display: flex;
-    /* margin-left: 350px;
-    margin-top: 100px; */
+     visibility: hidden; 
+    width:200px;
+    height: 200px;
+    display: flex; 
     justify-content: center;
-    max-width: 80%;
+
     /* doesnt overflow our page */
     background-color: purple;
     margin: 0 auto;
     padding: 10px; 
     align-items: center;
     
-}
+} 
 #startButton {
     font-size: 2.4rem;
-    padding: 2rem 0;
     width: 30rem;
     text-align: center;
     margin-bottom: 1rem;
@@ -46,17 +44,32 @@ h1 {
     display: flex;
     justify-content: center;
     background-color:purple;
+    border-color: blueviolet;
     color: white;
-    /* margin-left: 535px; */
+    margin-left: 100px; 
+    margin-top: 0rem;
 
+}
+
+#score {
+    font-size: 1rem;
+    width: 5rem;
+    text-align: center;
+    background: linear-gradient(90deg, grey);
+    border-radius:4px;
+    border-color: blueviolet;
+    background-color:purple;
+    color: white;
+    margin-left: 450px; 
 }
 
 #highscores-link {
     display: center;
     justify-content: center;
     background-color:purple;
+    border-color: blueviolet;
     color: white;
-    margin-left: 750px;
+    margin-left: 200px;
     width: 100px;
     height: 30px;
 }
@@ -65,47 +78,47 @@ h1 {
 #answer-buttons {
     display: grid;
     gap: 10px;
-    margin: 80px;
-    width: 600px;
-    height: 200px;
-    margin-right: 150px;
     justify-content: center;
+    background: purple;
+    
+
   
 }
 
 .btn {
     cursor: pointer;
     background-color: white;
-    font-size: 20px;
+    font-size: 10px;
     text-align: center;
     justify-content: center;
+    border-color: blueviolet;
+    color: purple;
+    
     
 }
 
-#question{
+#questions{
     font-size: 20px;
     display: inline;
-    color: white;
+    color: purple;
+    display: inline;
 }
 #timer {
     /* visibility: 'hidden'; */
     text-align: center;
+    display: flex;
+    justify-content: center;
     width: 100px;
     height: 20px;
     background-color: purple;
+    border-color: blueviolet;
     color: white;
+    font-size: 10px;
+    margin-top: -15rem;
    
 }
 
 
-.quiz-score {
-    text-align: center;
-    width: 155px;
-    height: 30px;
-    background-color: purple;
-    color: white;
-    margin-top: -650px;
-}
 
 .high-score {
     text-align: center;
@@ -125,29 +138,19 @@ h1 {
     /* visibility: hidden; */
 }
 
-.scores {
-    /* visibility: hidden; */
-}
 
 #score-container {
-    /* visibility: hidden; */
+    text-align: center;
+    width: 155px;
+    height: 30px;
+    background-color: purple;
+    color: white;
+    margin-top: 70px;
+    padding: 30px;
 }
 
 .hidden {
     visibility: hidden;
-}
-
-.btn:hover {
-    cursor: pointer;
-    box-shadow: grey;
-    transition: transform 15ms;
-    transform: scale(1.03);
-}
-
-.btn[disabled]:hover {
-    cursor:not-allowed;
-    box-shadow: none;
-    transform:none;
 }
 
 
