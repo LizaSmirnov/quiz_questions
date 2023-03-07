@@ -17,7 +17,8 @@ var finalScore = document.querySelector('#your-score');
 
 let currentQuestions = 0;
 let currentAnswers = '';
-let secondsStart = 20;
+let score = 0;
+let secondsStart = 40;
 let secondsPassed = 0;
 
 
@@ -50,7 +51,8 @@ var questions = [
 
 
 // Listen for a click event on toggle switch
-startButton.addEventListener('click', startGame)
+startButton.addEventListener('click', startGame);
+highScoreBtn.addEventListener('click',(highScoresPage));
  
 function startGame(){
     startButton.style.visibility = 'hidden';
@@ -61,6 +63,8 @@ function startGame(){
     timeEl.style.visibility = 'visible';
     answerBtn.style.visibility = 'visible';
     scoreNumber.style.visibility='visible';
+
+    scoreNumber.textContent = score
    
     
     setTime();
@@ -86,22 +90,15 @@ function nextQuestion() {
     if (currentQuestions < questions.length) {
         generateQues();
     } else {
-        clearInterval(timeEl);
-    
-        if ((secondsStart - secondsPassed) > 0)
-            score += (secondsStart - secondsPassed);
-        userScore.textContent = score;
-        hide(questionContainer);
-        show(userScore);
-        timeEl.textContent = 0;
+        sendMessage();
+        
     }
 }
 //checks if answer correct
 function checkAnswer(answer) { 
-    let score = 0;
-   scoreNumber.textContent = score
     if (answer === questions[currentQuestions].answer) {
-        score += 10;
+        score = score + 10;
+        scoreNumber.textContent = score
         message.textContent ="Correct!";
     }
     else {
@@ -144,26 +141,117 @@ function sendMessage() {
     highsScoreContainer.style.visibility = 'visible';
     window.alert('You are done.');
 }
-function youScoreSave(){
-var finalScore = scoreNumber.textContent;
 
+const submitButton = document.querySelector('#submit-btn');
+const inputInitials = document.querySelector('#initials-field')
+
+
+submitButton.addEventListener("click", (saveHighScore));
+
+// function putYourName(event) {
+//     //prevent default behaviour of form submission
+//     event.preventDefault();
+  
+//     //check for input
+//     console.log(inputInitials.textContent);
+//     if (inputInitials.textContent !== '') {
+//         saveHighScore();
+//     } else {
+//         alert("Put your name please...");
+//     }
+//    };
+  
+   function saveHighScore(){
+    var highScoresArr= [];
+    highScoresArr = JSON.parse(localStorage.getItem('highScores-container')) || [];
+    console.log(highScoresArr)
+    var int = inputInitials.value;
+    console.log(inputInitials.value)
+
+    scoreObj = {
+        int,
+        score
+
+    }
+   highScoresArr.push(scoreObj);
+   localStorage.setItem('userScore', JSONstringify(highScoresArr));
+   printHighScores(highScoresArr);
+
+   function printHighScores(highScoresArr) {
+    // move to scoreBoard container 
+    highScoreContainer.classList.add("hide");
+    userScore.classList.remove("hide");
+
+    // console.log(highScoresArr);
+    highScoresArr.sort( (a, b) => b.score - a.score)
+    highScoresArr.splice(10);
+    
+    // for each object created, make it a list and append
+    highScoresArr.forEach(scoreObj => {
+        const listItem = document.createElement('li');
+        listItem.innerText = `${scoreObj.int}   -   ${scoreObj.score}`;
+        listItem.classList.add('highScoresList');
+        highScoresList.appendChild(listItem);
+       })
+}
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    //need to prevent refresh     event.preventDefault();
+    highScoreBtn.addEventListener('click',(highScoresPage)); 
     
+    function highScoresPage() {
+    startButton.style.visibility = 'hidden';
+    highScoreBtn.style.visibility = 'hidden';
+    userScore.style.visibility='visible';
+    highsScoreContainer.style.visibility='hidden';
+    questionContainer.style.visibility='hidden';
+    timeEl.style.visibility = 'hidden';
+    answerBtn.style.visibility = 'hidden';
+    scoreNumber.style.visibility='hidden'; 
+    
+    scoreNumber.innerText ="[" + timeEl + "]";
+    
+};
 
-
-
+  
+  
+  //     updatelistofNamesScores(listofNamesScores);
+//     highsScoreContainer.style.display="visible";
+  
+//     renderLeaderboard();
+//   }
+  
+//   //updates the leaderboard stored in local storage
+//   function updateStoredLeaderboard(leaderboardItem) {
+//     let leaderboardArray = getLeaderboard();
+//     //append new leaderboard item to leaderboard array
+//     leaderboardArray.push(leaderboardItem);
+//     localStorage.setItem("leaderboardArray", JSON.stringify(leaderboardArray));
+//   }
+  
+//   //get "leaderboardArray" from local storage (if it exists) and parse it into a javascript object using JSON.parse
+//   function getLeaderboard() {
+//     let storedLeaderboard = localStorage.getItem("leaderboardArray");
+//     if (storedLeaderboard !== null) {
+//       let leaderboardArray = JSON.parse(storedLeaderboard);
+//       return leaderboardArray;
+//     } else {
+//       leaderboardArray = [];
+//     }
+//     return leaderboardArray;
+//   }
+  
+  //display leaderboard on leaderboard card
+//   function renderLeaderboard() {
+//     let sortedLeaderboardArray = sortLeaderboard();
+//     const highscoreList = document.querySelector("#highscore-container");
+//     highscoreList.innerHTML = "";
+//     for (let i = 0; i < sortedLeaderboardArray.length; i++) {
+//       let leaderboardEntry = sortedLeaderboardArray[i];
+//       let newListItem = document.createElement("li");
+//       newListItem.textContent =
+//         leaderboardEntry.initials + " - " + leaderboardEntry.score;
+//       highscoreList.append(newListItem);
+//     }
+//   }
+  

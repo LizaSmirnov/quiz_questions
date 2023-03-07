@@ -24,11 +24,13 @@ h2 {
 font-size: 10px;
 background-color: purple;
 color: white;
+display: flex;
+  justify-content: center
   
   }
 
 #questions-container {
-     visibility: hidden; 
+    
     width:200px;
     height: 200px;
     display: flex; 
@@ -53,7 +55,7 @@ color: white;
     background-color:purple;
     border-color: blueviolet;
     color: white;
-    margin-left: 100px; 
+    margin-left: auto center; 
     margin-top: 0rem;
 
 }
@@ -132,8 +134,16 @@ color: white;
 
 
 
-.highscores-container {
-    /* visibility: hidden; */
+#highscores-container {
+
+    color: white;
+    background-color: purple;
+    font-size: 10px;
+    width:200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: 200px;
+
 }
 
 #initials-label {
@@ -157,61 +167,9 @@ color: white;
 }
 
 
-
-
-
-/* button {
-  background-color:purple;;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.2em;
-  letter-spacing: 0.21px;
-  line-height: 16px;
-  max-width: 255px;
-  padding: 20px 52px;
-  text-align: center;
-  transition-duration: 0.15s;
-  transition-property: background-color;
-  transition-timing-function: linear;
-  margin-top: 0.6em;
-  float: center;
+@media screen and (max-width: 600px) {
+    div.example {
+      display: none;
+    }
 }
 
-.timer {
-    background-color:purple;;
-    border-radius: 8px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.2em;
-    letter-spacing: 0.21px;
-    line-height: 16px;
-    max-width: 255px;
-    padding: 20px 52px;
-    text-align: center;
-    transition-duration: 0.15s;
-    transition-property: background-color;
-    transition-timing-function: linear;
-    margin-top: 0px;;
-    float: center;
-  }
-
-
-  .quiz-score {
-    background-color:purple;;
-    border-radius: 8px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.2em;
-    letter-spacing: 0.21px;
-    line-height: 16px;
-    max-width: 255px;
-    padding: 20px 52px;
-    text-align: center;
-    transition-duration: 0.15s;
-    transition-property: background-color;
-    transition-timing-function: linear;
-    margin-top: 0px;
-    margin-left: 400px;
-    float: center;
-  } */
