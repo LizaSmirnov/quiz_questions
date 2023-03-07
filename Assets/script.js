@@ -3,16 +3,51 @@ var startButton = document.querySelector('#startButton');
 var scoreNumber = document.querySelector('#score');
 var questionContainer = document.querySelector('#questions-container');
 var timeEl = document.querySelector('#timer');
-var highsScoreContainer = document.querySelector('#hidescores')
+var highsScoreContainer = document.querySelector('#score-container')
 var questionsEl = document.querySelector('#questions');
 var highScoreBtn = document.querySelector('#highscores-link');
 var answerBtn = document.querySelector('#answer-buttons');
 var restartBtn = document.querySelector('#restart-btn');
-var answers = Array.from(document.querySelector('.btn'));
-let currentQuestions = {};
-let acceptingAnswers = true;
-let score = 0;
-let secondsStart = 10;
+var answerButtons = document.querySelectorAll('.btn');
+var message = document.querySelector('#message')
+var userScore = document.querySelector('#highscores-container');
+var initialsEl = document.querySelector('#initials-field');
+var finalScore = document.querySelector('#your-score');
+
+
+let currentQuestions = 0;
+let currentAnswers = '';
+let secondsStart = 20;
+let secondsPassed = 0;
+
+
+//Question const
+var questions = [
+    {
+        question: 'What is 12*12?',
+        options: ['144','244','124','134'],
+        answer: 'answer: 144'
+        
+    },
+    {
+        question: 'What is 6*8?',
+        options: ['48','44','42','88'],
+        answer: 'answer: 48'
+    
+    },
+    {
+        question: 'What is 1*1?',
+        options: ['1','2','4','3'],
+        answer: 'answer: 1'
+    },
+    {
+        question: 'What is 1*12?',
+        options: ['14','12','24','34'],
+        answer: 'answer: 12'
+    }
+];
+
+
 
 // Listen for a click event on toggle switch
 startButton.addEventListener('click', startGame)
@@ -20,69 +55,99 @@ startButton.addEventListener('click', startGame)
 function startGame(){
     startButton.style.visibility = 'hidden';
     highScoreBtn.style.visibility = 'hidden';
+    userScore.style.visibility='hidden';
+    highsScoreContainer.style.visibility='hidden';
     questionContainer.style.visibility='visible';
     timeEl.style.visibility = 'visible';
     answerBtn.style.visibility = 'visible';
     scoreNumber.style.visibility='visible';
+   
     
     setTime();
-    scoreTally();
+    generateQues();
+}
+//begin questions & display answer options
+function generateQues(){
+    questionsEl.textContent = questions[currentQuestions].question;//sets up question string
+    
+    // console.dir(answerButtons)
+
+    for (var i = 0; i < questions.length; i++) {
+
+        answerButtons[i].textContent =`${'answer'}: ${questions[currentQuestions].options[i]}`;
+
+    }
 }
 
 
+//move to next question 
+function nextQuestion() {
+    currentQuestions++;
+    if (currentQuestions < questions.length) {
+        generateQues();
+    } else {
+        clearInterval(timeEl);
+    
+        if ((secondsStart - secondsPassed) > 0)
+            score += (secondsStart - secondsPassed);
+        userScore.textContent = score;
+        hide(questionContainer);
+        show(userScore);
+        timeEl.textContent = 0;
+    }
+}
+//checks if answer correct
+function checkAnswer(answer) { 
+    let score = 0;
+   scoreNumber.textContent = score
+    if (answer === questions[currentQuestions].answer) {
+        score += 10;
+        message.textContent ="Correct!";
+    }
+    else {
+        secondsStart -= 10;
+        message.textContent ="Nope wrong :'(";
+    }
+    
+}
+//event listen for when clicking answer buttons
+
+for (var i= 0; i<answerButtons.length; i++){
+    answerButtons[i].addEventListener("click", function (event) {
+        if (event.target.matches("button")) {
+            // console.dir(event.target)
+            checkAnswer(event.target.textContent);
+            nextQuestion();
+        }
+    });
+
+}
+
 
 function setTime() {
-   
-   
-  var timerInterval = setInterval(function() {
+    var timerInterval = setInterval(function() {
     secondsStart--;
+    secondsPassed++;
     timeEl.textContent = secondsStart + ' sec left';
-    if(secondsStart === 0) {
+    if(secondsStart <= 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval)
       sendMessage();
     }
   }, 1000);
-//second one
 }
-// var score = 0
-// function scoreTally {
-//     if (console.log(questions[1].answers[0].correct) === true){
-//         score++
-//         scoreNumber.textContent = score;
-//     }
-//         else {
-//             score--
-//             scoreNumber.textContent = score;
-//         }
-//     }
+
 function sendMessage() {
     timeEl.style.visibility='hidden';
     questionContainer.style.visibility='hidden';
     answerBtn.style.visibility = 'hidden';
     highsScoreContainer.style.visibility = 'visible';
-   
-
-    
     window.alert('You are done.');
-
-
-
-    //go to high score page where they can add input
 }
-function highscore(){
-var score = 0;
-var highscore = localStorage.getItem('#highscore');
+function youScoreSave(){
+var finalScore = scoreNumber.textContent;
 
-if(highscore !== null){
-    if (score > highscore) {
-        localStorage.setItem('#highscore', score);      
-    }
 }
-else{
-    localStorage.setItem('#highscore', score);
-}
-};
 
 
 
@@ -97,59 +162,6 @@ else{
 
 
 
-//Question const
-const questions = [
-    {
-        question: 'What is 12*12?',
-        answers: [
-            {text: 144, correct:true},
-            {text: 244, correct:false},
-            {text: 124, correct:false},
-            {text: 134, correct:false}
-        ]
-    },
-    {
-        question: 'What is 6*8?',
-        answers: [
-            {text: 48, correct:true},
-            {text: 44, correct:false},
-            {text: 488, correct:false},
-            {text: 88, correct:false}
-        ]
-    },
-    {
-        question: 'What is 1*1?',
-        answers: [
-            {text: 1, correct:true},
-            {text: 10, correct:false},
-            {text: 11, correct:false},
-            {text: 111, correct:false}
-        ]
-    },
-    {
-        question: 'What is 1*12?',
-        answers: [
-            {text: 12, correct:true},
-            {text: 24, correct:false},
-            {text: 14, correct:false},
-            {text: 11, correct:false}
-        ]
-    }
-];
-
-
-  
-
-
-
-    //button disappear
-    //timer starts
-    //quetions appear
-    // var score = 0
-    // if right score ++
-    //if wrong prompt wrong
-    // display messgae of score
-    //store all scores in local storage
     //need to prevent refresh     event.preventDefault();
     
 

@@ -14,20 +14,22 @@
   <div class="container">
     <h1>Quiz Time!</h1>
     <button id="startButton">Start</button>
-    <button id="score" class ='hidden'>Score</button>
+    <div id="score" class ='hidden'></div>
       <button id="highscores-link">View high scores</button>
     </div>
       <div id="questions-container" class="hidden">
-        <h1 id="questions">"Question"</h1>
+        <h1 class='h1' id="questions"></h1>
           <div id="answer-buttons" class="hidden">
-            <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button>
+            <button class="btn" ></button>
+            <button class="btn" ></button>
+            <button class="btn" ></button>
+            <button class="btn" ></button>
+            <h2 class='h2' id="message"></h2>
           </div>
     </div>
     <div id="timer" class="hidden">
   </div>
+  
       </section>
 <!-- High Score -->
       <section id="score-container" class="hidden">
@@ -37,21 +39,13 @@
           <input type="text" id="initials-field" placeholder="Enter your initials" />
           <button id="submit-btn">Submit</button>
         </form>
+        <button id="highscores-link">View high scores</button>
       </section>
 
-      <section id="highscores" class="highscores-container hide">
-        <div id="high-scores">
-          <h1 id="centered" class="hidden">High Scores</h1>
-          <div id="highscore" class="highscore highscore-list">
-          </div>
-          <div class="controls">
-            <button id="restart-btn" class="hidden">Restart</button>
-          </div>
-        </div>
-
-      </section>
+      <div id="highscores-container" class="hidden"></div>
 
       <script src="./assets/script.js"></script>
+      <script src ='./assets/ques.js'></script>
 </body>
 
 </html>
