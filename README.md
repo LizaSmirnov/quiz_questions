@@ -66,6 +66,7 @@ THEN I can save my initials and my score
 
 ## Deployement
 
+ https://lizasmirnov.github.io/quiz_questions/
 
 Liza Smirnov
 ISC License [https://choosealicense.com/licenses/isc/]
