@@ -1,20 +1,5 @@
-# 04 Web APIs: Code Quiz
+# quiz_questions
 
-## Your Task
-
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
-
-To help familiarize you with these tests and allow you to use the skills covered in this module, this Challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
-
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
-
-## User Story
-
-```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
 
 ## Acceptance Criteria
 
@@ -32,68 +17,87 @@ WHEN the game is over
 THEN I can save my initials and my score
 ```
 
-## Mock-Up
+## Description
 
-The following animation demonstrates the application functionality:
+- Started from scratch for everything we needed to us HTML, CSS and Javascript to create a quiz.
+- A lot of buttons where made with event listeners to guide the code through the quiz.
+- Once the quiz was over you had an option to submit your score and save it in the highscores page.
+- Prevent default and localStorage where used to store values and prevent them from disappearing.
 
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
+## Installation
+- The best practive was to start with the HTML so I could see what I was beginning with and adding from there
+ 
+ ![image](https://user-images.githubusercontent.com/122588135/223351789-4593025f-7860-43b0-aa19-8859a3131dbb.png)
 
-## Grading Requirements
+- Once that was started decided to add buttons to call functions and link my javaScript file
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+ ![image](https://user-images.githubusercontent.com/122588135/223351952-e98fcd78-9c8e-49d7-97fd-6f9b999389c7.png)
 
-This Challenge is graded based on the following criteria: 
+- Next I worked on the CSS to get started on how some of my boxes that store information will look like
+  
+  ![image](https://user-images.githubusercontent.com/122588135/223352237-780968f7-dc5b-4770-853c-168b120b7881.png)
 
-### Technical Acceptance Criteria: 40%
+- There was a lot to add to my CSS as I went stylizing all the different containers and buttons, but got it done and added media screen
 
-* Satisfies all of the preceding acceptance criteria.
+  ![image](https://user-images.githubusercontent.com/122588135/223352525-ae3cced3-5a05-43c2-81e6-f808971a545d.png)
 
-### Deployment: 32%
+- I got my quiz started correctly with time going down.
 
-* Application deployed at live URL.
+  ![image](https://user-images.githubusercontent.com/122588135/223353045-bea81cc9-c1e9-48b7-9768-33317f8a5d8c.png)
+  
+  ![image](https://user-images.githubusercontent.com/122588135/223353228-a4f0d590-8376-416f-9c41-fa2aeb8ffde6.png)
 
-* Application loads with no errors.
+- When right answer was clicked score went up and if not timer decreased by 10 seconds.
+  
+  ![image](https://user-images.githubusercontent.com/122588135/223353542-a2c4ddd3-9358-43a8-a908-e4b811e11ffd.png)
 
-* Application GitHub URL submitted.
+- Next the input score page loaded allowing user to save their score.
 
-* GitHub repository contains application code.
+  ![image](https://user-images.githubusercontent.com/122588135/223353768-9de04b8a-89e3-4241-82a5-b058ff249bac.png)
 
-### Application Quality: 15%
+-Lastly you were able to see the users score on a score board with others.
 
-* Application user experience is intuitive and easy to navigate.
+## Credits
 
-* Application user interface style is clean and polished.
+- w3school.com (lifesaver)
+- modules from classwork
+- StackOverFlow.com
+- https://www.youtube.com/watch?v=f4fB9Xg2JEY&t=2410s (Brian Designs)
 
-* Application resembles the mock-up functionality provided in the Challenge instructions.
+## Deployement
 
-### Repository Quality: 13%
+ https://lizasmirnov.github.io/quiz_questions/
 
-* Repository has a unique name.
+Liza Smirnov
+ISC License [https://choosealicense.com/licenses/isc/]
 
-* Repository follows best practices for file structure and naming conventions.
+## License
 
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+Copyright (c) [2023] [Liza Smirnov]
 
-* Repository contains multiple descriptive commit messages.
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
 
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
 
-## Review
+## Badges
 
-You are required to submit BOTH of the following for review:
 
-* The URL of the functional, deployed application.
+## Features
 
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
+N/A yet
 
----
+## How to Contribute
 
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+N/A
+
+## Tests
+
+N/A
