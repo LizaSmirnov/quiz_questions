@@ -3,7 +3,7 @@ var startButton = document.querySelector('#startButton');
 var scoreNumber = document.querySelector('#score');
 var questionContainer = document.querySelector('#questions-container');
 var timeEl = document.querySelector('#timer');
-var highsScoreContainer = document.querySelector('#score-container')
+var scoreContainer = document.querySelector('#score-container')
 var questionsEl = document.querySelector('#questions');
 var highScoreBtn = document.querySelector('#highscores-link');
 var answerBtn = document.querySelector('#answer-buttons');
@@ -13,12 +13,13 @@ var message = document.querySelector('#message')
 var userScore = document.querySelector('#highscores-container');
 var initialsEl = document.querySelector('#initials-field');
 var finalScore = document.querySelector('#your-score');
+var backBtn = document.querySelector('#back-btn');
 
 
 let currentQuestions = 0;
 let currentAnswers = '';
 let score = 0;
-let secondsStart = 40;
+let secondsStart = 20;
 let secondsPassed = 0;
 
 
@@ -51,14 +52,22 @@ var questions = [
 
 
 // Listen for a click event on toggle switch
-startButton.addEventListener('click', startGame);
-highScoreBtn.addEventListener('click',(highScoresPage));
- 
+startButton.addEventListener('click', startGame)
+highScoreBtn.addEventListener('click', highScoresPage)
+
+function firstPage(){
+    userScore.style.visibility='hidden';
+    startButton.style.visibility = 'visible';
+    highScoreBtn.style.visibility = 'visible';
+    h1.visibility='visible';
+   
+}
+
 function startGame(){
     startButton.style.visibility = 'hidden';
     highScoreBtn.style.visibility = 'hidden';
     userScore.style.visibility='hidden';
-    highsScoreContainer.style.visibility='hidden';
+    scoreContainer.style.visibility='hidden';
     questionContainer.style.visibility='visible';
     timeEl.style.visibility = 'visible';
     answerBtn.style.visibility = 'visible';
@@ -90,7 +99,7 @@ function nextQuestion() {
     if (currentQuestions < questions.length) {
         generateQues();
     } else {
-        sendMessage();
+        inputName();
         
     }
 }
@@ -119,139 +128,80 @@ for (var i= 0; i<answerButtons.length; i++){
     });
 
 }
-
+var timerInterval
 
 function setTime() {
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
     secondsStart--;
     secondsPassed++;
     timeEl.textContent = secondsStart + ' sec left';
     if(secondsStart <= 0) {
       // Stops execution of action at set interval
-      clearInterval(timerInterval)
-      sendMessage();
+      clearInterval(timerInterval);
+      inputName();
     }
   }, 1000);
 }
 
-function sendMessage() {
+
+
+function inputName() {
     timeEl.style.visibility='hidden';
     questionContainer.style.visibility='hidden';
     answerBtn.style.visibility = 'hidden';
-    highsScoreContainer.style.visibility = 'visible';
-    window.alert('You are done.');
+    scoreContainer.style.visibility = 'visible';
+    highScoreBtn.style.visibility = 'hidden';
+    clearInterval(timerInterval);
+    // putYourName();
 }
 
-const submitButton = document.querySelector('#submit-btn');
-const inputInitials = document.querySelector('#initials-field')
+
+ 
+// var initialsEl = document.getElementById('initials');
+//   var initials = initialsEl.value;
 
 
-submitButton.addEventListener("click", (saveHighScore));
 
-// function putYourName(event) {
-//     //prevent default behaviour of form submission
-//     event.preventDefault();
-  
-//     //check for input
-//     console.log(inputInitials.textContent);
-//     if (inputInitials.textContent !== '') {
-//         saveHighScore();
-//     } else {
-//         alert("Put your name please...");
-//     }
-//    };
-  
-   function saveHighScore(){
-    var highScoresArr= [];
-    highScoresArr = JSON.parse(localStorage.getItem('highScores-container')) || [];
-    console.log(highScoresArr)
-    var int = inputInitials.value;
-    console.log(inputInitials.value)
 
-    scoreObj = {
-        int,
-        score
+var submitButton = document.querySelector('#submit-btn');
+var initials = document.getElementById('initials-field')
 
+
+console.log(initials, 'come on')
+submitButton.addEventListener('click', (saveHighScore)
+
+);
+function saveHighScore(event){
+    event.preventDefault();
+    clearInterval(timerInterval);
+ 
+       var scoreObj = {
+        Name: initials.value,
+        Score: scoreNumber.textContent
     }
-   highScoresArr.push(scoreObj);
-   localStorage.setItem('userScore', JSONstringify(highScoresArr));
-   printHighScores(highScoresArr);
-
-   function printHighScores(highScoresArr) {
-    // move to scoreBoard container 
-    highScoreContainer.classList.add("hide");
-    userScore.classList.remove("hide");
-
-    // console.log(highScoresArr);
-    highScoresArr.sort( (a, b) => b.score - a.score)
-    highScoresArr.splice(10);
-    
-    // for each object created, make it a list and append
-    highScoresArr.forEach(scoreObj => {
-        const listItem = document.createElement('li');
-        listItem.innerText = `${scoreObj.int}   -   ${scoreObj.score}`;
-        listItem.classList.add('highScoresList');
-        highScoresList.appendChild(listItem);
-       })
-}
+    localStorage.setItem("scoreObj", JSON.stringify(scoreObj));
+    console.log(scoreObj, 'score object');
+    highScoresPage();
+ 
 }
 
 
-    highScoreBtn.addEventListener('click',(highScoresPage)); 
-    
-    function highScoresPage() {
+
+
+function highScoresPage() {
+
+      
     startButton.style.visibility = 'hidden';
     highScoreBtn.style.visibility = 'hidden';
     userScore.style.visibility='visible';
-    highsScoreContainer.style.visibility='hidden';
+    scoreContainer.style.visibility='hidden';
     questionContainer.style.visibility='hidden';
     timeEl.style.visibility = 'hidden';
     answerBtn.style.visibility = 'hidden';
     scoreNumber.style.visibility='hidden'; 
-    
-    scoreNumber.innerText ="[" + timeEl + "]";
+
+    var backBtn = document.querySelector('#back-btn');
+    backBtn.addEventListener('click', (firstPage))
     
 };
 
-  
-  
-  //     updatelistofNamesScores(listofNamesScores);
-//     highsScoreContainer.style.display="visible";
-  
-//     renderLeaderboard();
-//   }
-  
-//   //updates the leaderboard stored in local storage
-//   function updateStoredLeaderboard(leaderboardItem) {
-//     let leaderboardArray = getLeaderboard();
-//     //append new leaderboard item to leaderboard array
-//     leaderboardArray.push(leaderboardItem);
-//     localStorage.setItem("leaderboardArray", JSON.stringify(leaderboardArray));
-//   }
-  
-//   //get "leaderboardArray" from local storage (if it exists) and parse it into a javascript object using JSON.parse
-//   function getLeaderboard() {
-//     let storedLeaderboard = localStorage.getItem("leaderboardArray");
-//     if (storedLeaderboard !== null) {
-//       let leaderboardArray = JSON.parse(storedLeaderboard);
-//       return leaderboardArray;
-//     } else {
-//       leaderboardArray = [];
-//     }
-//     return leaderboardArray;
-//   }
-  
-  //display leaderboard on leaderboard card
-//   function renderLeaderboard() {
-//     let sortedLeaderboardArray = sortLeaderboard();
-//     const highscoreList = document.querySelector("#highscore-container");
-//     highscoreList.innerHTML = "";
-//     for (let i = 0; i < sortedLeaderboardArray.length; i++) {
-//       let leaderboardEntry = sortedLeaderboardArray[i];
-//       let newListItem = document.createElement("li");
-//       newListItem.textContent =
-//         leaderboardEntry.initials + " - " + leaderboardEntry.score;
-//       highscoreList.append(newListItem);
-//     }
-//   }
-  

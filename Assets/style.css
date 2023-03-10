@@ -55,7 +55,7 @@ display: flex;
     background-color:purple;
     border-color: blueviolet;
     color: white;
-    margin-left: auto center; 
+    margin-left: 200px; 
     margin-top: 0rem;
 
 }
@@ -78,7 +78,7 @@ display: flex;
     background-color:purple;
     border-color: blueviolet;
     color: white;
-    margin-left: 200px;
+    margin-left: 300px;
     width: 100px;
     height: 30px;
 }
@@ -146,10 +146,6 @@ display: flex;
 
 }
 
-#initials-label {
-    /* visibility: hidden; */
-}
-
 
 #score-container {
     text-align: center; 
@@ -160,6 +156,11 @@ display: flex;
     padding: 30px;
     margin-top: -100px;
     margin-left: 185px;
+}
+
+#initials-label {
+    font-size: 10px;
+    color:black
 }
 
 .hidden {
