@@ -48,21 +48,27 @@ var questions = [
         answer: 'answer: 12'
     }
 ];
-//lets see
+
 
 
 // Listen for a click event on toggle switch
 startButton.addEventListener('click', startGame)
 highScoreBtn.addEventListener('click', highScoresPage)
 
+//home page of quiz game
 function firstPage(){
     userScore.style.visibility='hidden';
     startButton.style.visibility = 'visible';
     highScoreBtn.style.visibility = 'visible';
-    h1.visibility='visible';
+    currentQuestions = 0;
+    currentAnswers = '';
+    score = 0;
+    secondsStart = 20;
+    
    
 }
-
+//starts the game when start button pressed activating the event listener
+// to this function
 function startGame(){
     startButton.style.visibility = 'hidden';
     highScoreBtn.style.visibility = 'hidden';
@@ -75,7 +81,9 @@ function startGame(){
 
     scoreNumber.textContent = score
    
-    
+    //send the code to these two other functions 
+    //one starts the timer
+    //other starts to generate the questions
     setTime();
     generateQues();
 }
@@ -83,15 +91,12 @@ function startGame(){
 function generateQues(){
     questionsEl.textContent = questions[currentQuestions].question;//sets up question string
     
-    // console.dir(answerButtons)
-
     for (var i = 0; i < questions.length; i++) {
 
         answerButtons[i].textContent =`${'answer'}: ${questions[currentQuestions].options[i]}`;
 
     }
 }
-
 
 //move to next question 
 function nextQuestion() {
@@ -103,6 +108,7 @@ function nextQuestion() {
         
     }
 }
+
 //checks if answer correct
 function checkAnswer(answer) { 
     if (answer === questions[currentQuestions].answer) {
@@ -116,12 +122,12 @@ function checkAnswer(answer) {
     }
     
 }
+
 //event listen for when clicking answer buttons
 
 for (var i= 0; i<answerButtons.length; i++){
     answerButtons[i].addEventListener("click", function (event) {
         if (event.target.matches("button")) {
-            // console.dir(event.target)
             checkAnswer(event.target.textContent);
             nextQuestion();
         }
@@ -143,7 +149,8 @@ function setTime() {
   }, 1000);
 }
 
-
+//goes to the end of the quiz were user can input their name
+//and save thier score
 
 function inputName() {
     timeEl.style.visibility='hidden';
@@ -152,22 +159,15 @@ function inputName() {
     scoreContainer.style.visibility = 'visible';
     highScoreBtn.style.visibility = 'hidden';
     clearInterval(timerInterval);
-    // putYourName();
+   
 }
 
-
- 
-// var initialsEl = document.getElementById('initials');
-//   var initials = initialsEl.value;
-
-
-
-
+//when submit button clicked 
+// user name and score is saved
+// user will head to highscore page
 var submitButton = document.querySelector('#submit-btn');
 var initials = document.getElementById('initials-field')
 
-
-console.log(initials, 'come on')
 submitButton.addEventListener('click', (saveHighScore)
 
 );
@@ -179,18 +179,21 @@ function saveHighScore(event){
         Name: initials.value,
         Score: scoreNumber.textContent
     }
+    //local storage created to store user name and score
     localStorage.setItem("scoreObj", JSON.stringify(scoreObj));
-    console.log(scoreObj, 'score object');
+
     highScoresPage();
- 
-}
+    console.log(scoreObj, "piece")
+};
 
 
 
 
-function highScoresPage() {
 
-      
+//highscore page displays all the users highscores
+//allows user to return to title page
+
+function highScoresPage() {      
     startButton.style.visibility = 'hidden';
     highScoreBtn.style.visibility = 'hidden';
     userScore.style.visibility='visible';
@@ -202,6 +205,6 @@ function highScoresPage() {
 
     var backBtn = document.querySelector('#back-btn');
     backBtn.addEventListener('click', (firstPage))
-    
-};
 
+ 
+};

@@ -107,6 +107,16 @@ display: flex;
     
 }
 
+#back-btn{
+    font-size: 10px;
+    background: white;
+    border-color: blueviolet;
+    color: purple;
+    display: flex;
+    justify-content: center;
+}
+
+
 #questions{
     font-size: 20px;
     display: inline;
