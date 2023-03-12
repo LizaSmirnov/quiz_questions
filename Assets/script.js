@@ -180,7 +180,11 @@ function saveHighScore(event){
         Score: scoreNumber.textContent
     }
     //local storage created to store user name and score
-    localStorage.setItem("scoreObj", JSON.stringify(scoreObj));
+    let highScores = JSON.parse(localStorage.getItem("scores")) || [];
+    console.log(highScores, 'whyyy')
+
+    highScores.push(scoreObj);
+    localStorage.setItem('scores',JSON.stringify(highScores));
 
     highScoresPage();
     console.log(scoreObj, "piece")
@@ -203,6 +207,11 @@ function highScoresPage() {
     answerBtn.style.visibility = 'hidden';
     scoreNumber.style.visibility='hidden'; 
 
+    const highScoreList = document.querySelector('#highscore-list');
+
+    const highScores = JSON.parse(localStorage.getItem('scoreObj')) || [];
+
+    console.log(highScores)
     var backBtn = document.querySelector('#back-btn');
     backBtn.addEventListener('click', (firstPage))
 
