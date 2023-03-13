@@ -14,7 +14,7 @@ var userScore = document.querySelector('#highscores-container');
 var initialsEl = document.querySelector('#initials-field');
 var finalScore = document.querySelector('#your-score');
 var backBtn = document.querySelector('#back-btn');
-
+var listOfScores= document.querySelector('#listOfHighScores')
 
 
 let currentQuestions = 0;
@@ -175,7 +175,11 @@ submitButton.addEventListener('click', (saveHighScore)
 function saveHighScore(event){
     event.preventDefault();
     clearInterval(timerInterval);
- 
+    
+    if (initials.value === "") {
+        alert("Please enter your initials!");
+        return;
+    } 
     //local storage created to store user name and score
      // store scores into local storage
      var savedHighScores = localStorage.getItem("highscores-container");
@@ -222,16 +226,18 @@ function highScoresPage() {
     answerBtn.style.visibility = 'hidden';
     scoreNumber.style.visibility='hidden'; 
    
-    var i = 0;
+    
     function showHighScores() {
 
 
-    const highScoreList = localStorage.getItem('highscores-container');
-    
-    for (; i<highsScoreList.length; i++){
+    const highScoreList = document.getElementById('highscores-container');
+    highScoreList.innerHTML="";
+    const scores = JSON.parse(localStorage.getItem("highscores-container"));
+
+    for (var i =0; i<scores.length; i++){
         var newScore = document.createElement('p');
-        eachNewScore.innerHTML = highScoreList[i].initials + ": " + highScoreList[i].score;
-        userScore.appendChild(eachNewHighScore);
+        newScore.innerHTML = scores[i].initials + ": " + scores[i].score;
+        userScore.appendChild(newScore);
     }
     
 }
