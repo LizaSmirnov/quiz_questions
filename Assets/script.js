@@ -16,6 +16,7 @@ var finalScore = document.querySelector('#your-score');
 var backBtn = document.querySelector('#back-btn');
 
 
+
 let currentQuestions = 0;
 let currentAnswers = '';
 let score = 0;
@@ -175,20 +176,34 @@ function saveHighScore(event){
     event.preventDefault();
     clearInterval(timerInterval);
  
-       var scoreObj = {
+    //local storage created to store user name and score
+     // store scores into local storage
+     var savedHighScores = localStorage.getItem("highscores-container");
+
+ 
+     if (savedHighScores === null) {
+         scoresArray = [];
+     } else {
+         scoresArray = JSON.parse(savedHighScores)
+     }
+ 
+     var userScore = {
         Name: initials.value,
         Score: scoreNumber.textContent
-    }
-    //local storage created to store user name and score
-    let highScores = JSON.parse(localStorage.getItem("scores")) || [];
-    console.log(highScores, 'whyyy')
+     };
+ 
+     console.log(userScore);
+     scoresArray.push(userScore);
+ 
+     // stringify array in order to store in local
+     var scoresArrayString = JSON.stringify(scoresArray);
+     window.localStorage.setItem("highscores-container", scoresArrayString);
+     console.log(scoresArrayString);
+     // show current highscores
+     highScoresPage();
+ };
+ 
 
-    highScores.push(scoreObj);
-    localStorage.setItem('scores',JSON.stringify(highScores));
-
-    highScoresPage();
-    console.log(scoreObj, "piece")
-};
 
 
 
@@ -206,14 +221,34 @@ function highScoresPage() {
     timeEl.style.visibility = 'hidden';
     answerBtn.style.visibility = 'hidden';
     scoreNumber.style.visibility='hidden'; 
+   
+    var i = 0;
+    function showHighScores() {
 
-    const highScoreList = document.querySelector('#highscore-list');
 
-    const highScores = JSON.parse(localStorage.getItem('scoreObj')) || [];
+    const highScoreList = localStorage.getItem('highscores-container');
+    
+    for (; i<highsScoreList.length; i++){
+        var newScore = document.createElement('p');
+        eachNewScore.innerHTML = highScoreList[i].initials + ": " + highScoreList[i].score;
+        userScore.appendChild(eachNewHighScore);
+    }
+    
+}
+   
+    
 
-    console.log(highScores)
+
     var backBtn = document.querySelector('#back-btn');
-    backBtn.addEventListener('click', (firstPage))
+    backBtn.addEventListener('click', (firstPage));
+    
+    var clearScoresBtn = document.querySelector('#clear-highscores')
+    clearScoresBtn.addEventListener("click", (clearScores));
+    function clearScores(){
+        window.localStorage.clear("#highscores-container");
+        firstPage();
+    };
 
  
+
 };
