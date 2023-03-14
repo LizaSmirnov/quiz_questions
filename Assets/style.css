@@ -6,7 +6,7 @@
   padding:0;
   font-size:62.5%;
   font-family: Arial, Helvetica, sans-serif;
-  background: white;
+  /* background: white; */
    /* makes it so widths and heights are easier to style */
   font-family: Arial, Helvetica, sans-serif; 
 
@@ -153,10 +153,10 @@ display: flex;
 
 
 #highscores-container {
-
-    color: white;
+/* 
+    color: white; */
     background-color: purple;
-    font-size: 10px;
+    font-size: 12px;
     width:200px;
     height: 200px;
     margin-top: -100px;
